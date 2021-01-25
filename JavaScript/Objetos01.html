@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exemplo</title>
+    <style>
+        .centralizar{
+            text-align: center;
+        }
+        .campos{
+            background-color: bisque;
+            height: auto;
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, .6);
+            padding: 10px;
+            margin: auto;
+            position: relative;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>  
+    <header>
+        <p class="centralizar">Objetos Sintaxe Formal</p>
+    </header>
+    <section>
+        <div class="campos" id='Livro01'>
+            <!-- Ex. Livro01 -->
+        </div>
+    </section>
+    <footer>
+        <p class="centralizar"> &copy; Vinicius Cavalcante</p>
+    </footer>
+    <script>
+        /* Como criar e popular Objetos em Sintaxe Formal */
+
+        var livro01 = new Object(); //O construtor Object() cria um objeto vazio generico, e é nativo da linguagem.
+        livro01.nome = "JavaScript - Guia do Programador";
+        livro01.preco = 'R$49.90';
+        livro01.paginas = 432;
+        livro01.freteSedex = function (ceporigem, cepdestino, peso){
+            var valorFrete = 'R$12.00';
+            //Script necessario para calculo de frete
+            return valorFrete; 
+        }
+
+        var livro01txt = document.getElementById('Livro01');   
+        
+        
+        /* Uma sintaxe de recuperar os dados dos objetos é utilizando o operador "." depois do nome do objeto (Notação de ponto) */
+        livro01txt.innerHTML += `<hr>
+                                 <p>Nome: ${livro01.nome}<\p>  
+                                 <p>Preço: ${livro01.preco}<\p>
+                                 <p>Páginas: ${livro01.paginas}<\p>
+                                 <p>Frete Sedex: ${livro01.freteSedex(0361000, 62680, 1000)}<\p><hr>`;
+                                
+        /* Sintaxe alternativa, utilizando ao inves de '.' o uso de '[]' com a string dentro representando o nome da propriedade desejada (Notação de Colchetes)*/
+
+        livro01txt.innerHTML += `<hr>
+                                 <p>Nome: ${livro01['nome']}<\p>  
+                                 <p>Preço: ${livro01['preco']}<\p>
+                                 <p>Páginas: ${livro01['paginas']}<\p>
+                                 <p>Frete Sedex: ${livro01['freteSedex']}<\p><hr><hr>`;
+
+        /* Criação de objetos dentro de objetos em sintaxe formal*/
+
+        livro01.capitulos = new Object();
+
+        livro01.capitulos.capitulo1 = 'Arquivos de texto';
+        livro01.capitulos.capitulo2 = 'Sintaxe Formal';
+        livro01.capitulos.capitulo3 = 'Circuitos';
+
+        /* Mais uma sintaxe é o uso do loop com for/in para percorrer objetos/vetoresz */
+
+        for (var prop in livro01){
+            livro01txt.innerHTML += `${prop}: ${livro01[prop]}<br><br>`;
+        }
+        
+    </script>
+</body>
+</html>

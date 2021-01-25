@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exceções</title>
+    <style>
+        .centralizar{
+            text-align: center;
+        }
+        #conta{
+            background-color: aqua;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class='centralizar'>Teste Exceções 01</h1>
+    </header>
+    <section>
+        <div id='conta'>
+            <p class='centralizar'><input type="number" id='num1'> / <input type="number" id='num2'> = <input type="number" id='res' readonly></p>
+            <p class='centralizar'><input type="button" value="Go!" onclick="divisao()"></p>
+        </div>  
+    </section>
+    <script>
+        function divisao(){
+            var x = document.getElementById('num1');
+            var y = document.getElementById('num2');
+            var res = document.getElementById('res');
+
+            try { //o que esta contido dentro do bloca try sera uma expresão que pode gera uma exceção
+                if(y.value==0){
+                    throw ('erroDivisaoZero'); //usasse throw para criar uma referencia ao objeto erro, no caso o nome dessa referencia é: erroDivisaoZero 
+                }else{
+                    res.value = x.value/y.value;
+                }
+            } catch (error) { // o que esta contido no bloco catch só sera executado caso o bloco try capturar algum erro
+                if(error == 'erroDivisaoZero'){ //aqui testa para qual referencia o objeto erro esta sendo apontado 
+                    alert('Divisão por zero não é possivel'); //tratamento do erro sera informar ao usuario e não concluir a divisão
+                    y.value = "";
+                    y.focus();
+                }
+            }
+        } 
+    </script>
+    <footer class='centralizar'>
+        <p> &copy; Vinicius Cavalcante</p>
+    </footer>
+</body>
+</html>

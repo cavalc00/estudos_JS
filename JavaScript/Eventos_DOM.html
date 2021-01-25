@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.exDiv{
+            background: blue;
+            font-size: 15pt;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+            margin-bottom: 20px;
+        }
+        div#ex02{  /* Fiz com que a segunda div ficasse ao lado da primeira */
+            margin-left: 220px;
+            margin-top: -220px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="exDiv" id="ex01" onmouseover = "dentro()" onmouseout="fora()" onclick="clicou()"> <!-- A maioria dos eventos DOM começam com "on" -->
+        Aguardando...
+    </div>
+
+    <div class="exDiv" id="ex02" > <!-- Todos eventos estão dentro so script, deste modo deixando o HTML mais limpo -->
+        Aguardando...
+    </div>
+
+    <script> //Deste modo nosso HTML ficara poluido com os eventos em DOM, mas funcional.
+        var a = window.document.getElementById('ex01'); //capturado o objeto que tenha como id ex01
+
+        function dentro(){ //Definido o que faram as funções assim que chamadas
+            a.innerText = 'Entrou!';
+            a.style.background = 'Red';
+        }
+
+        function fora(){
+            a.innerText = 'Saiu!';
+            a.style.background = 'Blue';
+        }
+
+        function clicou(){
+            a.innerText = 'Clicou!';
+            a.style.background = 'Green';
+        }
+    </script>
+
+    <script> /* Deste modo o JS ficara responsavel por fazer a ligação dos objetos as ações, tirando a poluição do HTML */
+        var b = document.getElementById("ex02"); /* Window pode ser omitido da intrução porque é o elemento raiz de qualquer instrução em JS */
+
+        b.addEventListener('mouseenter', dentro2);
+        b.addEventListener('mouseleave', fora2);
+        b.addEventListener('click', clicou2);
+
+
+        function dentro2(){ //Definido o que faram as funções assim que chamadas
+            b.innerText = 'Entrou!';
+            b.style.background = 'Red';
+        }
+
+        function fora2(){
+            b.innerText = 'Saiu!';
+            b.style.background = 'Blue';
+        }
+
+        function clicou2(){
+            b.innerText = 'Clicou!';
+            b.style.background = 'Green';
+        }
+
+    </script>
+</body>
+</html>
